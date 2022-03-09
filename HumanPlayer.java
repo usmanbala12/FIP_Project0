@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class HumanPlayer extends player {
+class HumanPlayer extends Player {
 
 	public HumanPlayer(String name, char symbol) {
 		super(name, symbol);
@@ -37,9 +37,10 @@ class HumanPlayer extends player {
 						keyboard.nextLine();
 						choosenCell = keyboard.nextInt();
 					}
+					System.out.println("inner while loop is causing this");
 					break;
 				}
-
+				System.out.println("outer while loop is causing this.");
 				break;
 			}
 			
@@ -49,3 +50,4 @@ class HumanPlayer extends player {
 	}
 	
 }	
+

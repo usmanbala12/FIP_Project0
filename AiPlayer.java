@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-class AiPlayer extends player {
+class AiPlayer extends Player {
 
 	public AiPlayer(String name, char symbol){
 		super(name, symbol);
@@ -37,3 +37,4 @@ class AiPlayer extends player {
 		
 	}	
 }
+
