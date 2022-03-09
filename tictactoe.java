@@ -19,31 +19,60 @@ public class tictactoe {
 		// char threeSymbol = 'y';
 
 		// HumanPlayer three = new HumanPlayer(threeName, threeSymbol);
-		HumanPlayer one = new HumanPlayer(oneName, oneSymbol);
-		HumanPlayer two = new HumanPlayer(twoName, twoSymbol);
+		AiPlayer one = new AiPlayer(oneName, oneSymbol);
+		AiPlayer two = new AiPlayer(twoName, twoSymbol);
 
 		ArrayList<Integer> cellsLeft = game.getAvailableCells();
 		
 		int gameStatus = 0;
+		
+		int numberOfCellsLeft = cellsLeft.size();
+		
+		int count = 0;
 
-		while(cellsLeft.size() != 0){
-			int count = 0;
+		while(0 < numberOfCellsLeft){
 			
 			if(cellsLeft.size() == 1){
-				one.play(game);
-				break;
+				one.play(game); numberOfCellsLeft--;
+				
+				if (game.checkGameStatus() != 0){
+					System.out.println((char)game.checkGameStatus() + " has won the game");
+					break;
+				}
+				
+				System.out.println(one.getName() + " is playing");
+				System.out.println("cells left is one;");
+				gameStatus = game.checkGameStatus();
 			}
-			else {	
-				one.play(game); count++;
-				two.play(game); count++;
-			} 
 			
-			if(count > 4){
-			gameStatus = game.checkGameStatus();
+			
+			if (cellsLeft.size() > 1){
+			
+				if (game.checkGameStatus() != 0){
+					System.out.println((char)game.checkGameStatus() + " has won the game");
+					break;
+				}
+				
+				System.out.println("there are " + cellsLeft.size() + " left");	
+				one.play(game); count++; numberOfCellsLeft--;
+				
+				if (game.checkGameStatus() != 0){
+					System.out.println((char)game.checkGameStatus() + " has won the game");
+					break;
+				}
+				System.out.println(one.getName() + " is playing");
+				two.play(game); count++; numberOfCellsLeft--;
+				
+				if (game.checkGameStatus() != 0){
+					System.out.println((char)game.checkGameStatus() + " has won the game");
+					break;
+				}
+				
+				System.out.println(two.getName() + " is playing");
 			}
-			if(cellsLeft.size() == 0){
-				break;
-			}
+			
+			//if (cellsLeft.size() == 0) break;
+			System.out.println("while loop in main is causing this");
 		}	
 		
 
@@ -52,6 +81,12 @@ public class tictactoe {
 		// }
 
 		System.out.println("game over; ");
+		if(gameStatus == 0){
+			System.out.println("the game is a draw ");
+		}
+		else {
+			System.out.println((char)gameStatus + "won the game");
+		}
 	}
 
 	//public static void HumanVsHuman
