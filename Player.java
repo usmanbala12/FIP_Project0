@@ -12,6 +12,10 @@ public abstract class Player {
 		return name;
 	}
 
+	public char getSymbol(){
+		return symbol;
+	}
+
 	public int resolveSymbol(){
 		return (int)symbol;
 	}
@@ -20,4 +24,3 @@ public abstract class Player {
 	
 	
 }
-

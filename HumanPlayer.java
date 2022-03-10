@@ -23,10 +23,10 @@ class HumanPlayer extends Player {
 			int choosenCell = 0;
 			
 			while(availableCells.size() > 0 ){
-				System.out.println("These are the available cells... please choose one");
+				System.out.println(getName() + ": " + getSymbol() + ", These are the available cells... please choose one");
 
 				if(keyboard.hasNextInt()){
-					keyboard.nextLine();
+					//keyboard.nextLine();
 					choosenCell = keyboard.nextInt();
 				}
 
@@ -34,20 +34,20 @@ class HumanPlayer extends Player {
 				while(!availableCells.contains(choosenCell)){
 					System.out.println("the cell you've choosen isn't available, please choose another one ");
 					if(keyboard.hasNextInt()){
-						keyboard.nextLine();
+						//keyboard.nextLine();
 						choosenCell = keyboard.nextInt();
 					}
-					System.out.println("inner while loop is causing this");
 					break;
 				}
-				System.out.println("outer while loop is causing this.");
 				break;
 			}
 			
 			int symbolValue = resolveSymbol();
 
 			game.modifyGameState(choosenCell, symbolValue);
+
+			System.out.println(getSymbol() + " just played...");
+			game.printGameBoard();
 	}
 	
 }	
-

@@ -15,26 +15,30 @@ class AiPlayer extends Player {
 		Random randomnumbers = new Random();
 
 		//choose a random cells and pass it to the modify game State method
-		int random = randomnumbers.nextInt(9-1+1) + 1;
+		int random = 0;
 		
-		// check wheather a match has been found
-		int count = 0;
-		for (int i = 0; i < availableCells.size(); i++){
-			if(random == availableCells.get(i)){
-				count += 1;
-			}		
-		}
-		
-		while(count == 0){
-			random = randomnumbers.nextInt(9) + 1;
+		while(availableCells.size() > 0 ){
+
+			random = randomnumbers.nextInt(9-1+1) + 1;
+
+			while(!availableCells.contains(random)){
+
+				random = randomnumbers.nextInt(9-1+1) + 1;
+				break;
+			}
 			break;
 		}
+
 		
 		int symbolValue = resolveSymbol();
 
-		game.modifyGameState(random, symbolValue);
+		if(random != 0){
+			game.modifyGameState(random, symbolValue);
+		};
+
+		System.out.println(getSymbol() + " just played...");
 		game.printGameBoard();
+
 		
 	}	
 }
-

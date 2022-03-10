@@ -78,6 +78,10 @@ public class XandOGame {
 			case 9:
 			gameState[2][2] = symbolValue;
 			break;
+
+			default:
+			System.out.println("invalid selection");
+			break;
 		}
 		
 	}

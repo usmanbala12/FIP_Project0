@@ -35,7 +35,7 @@ public class tictactoe {
 			System.out.println("the game is a draw ");
 		}
 		else {
-			System.out.println((char)game.checkGameStatus() + "won the game");
+			System.out.println((char)game.checkGameStatus() + " won the game");
 		}
 	}
 
@@ -79,21 +79,29 @@ public class tictactoe {
 			if (numberOfCellsLeft > 1){
 			
 				if (game.checkGameStatus() != 0 && count > 4){
-					checkStatus(game);
+					checkStatus2(game);
 					break;
 				}
 					
 				player1.play(game);
 				count++;
 				numberOfCellsLeft--;
-				
-				checkStatus2(game);
+
+				if(game.checkGameStatus() > 0){
+					checkStatus2(game);
+					break;
+				};
 
 				player2.play(game);
 				count++;
 				numberOfCellsLeft--;
+
+				if(game.checkGameStatus() > 0){
+					checkStatus2(game);
+					break;
+				};
 				
-				checkStatus2(game);
+				;
 				
 			}
 			
@@ -135,21 +143,29 @@ public class tictactoe {
 			if (numberOfCellsLeft > 1){
 			
 				if (game.checkGameStatus() != 0 && count > 4){
-					checkStatus(game);
+					checkStatus2(game);
 					break;
 				}
 					
 				humanplayer.play(game);
 				count++;
 				numberOfCellsLeft--;
-				
-				checkStatus2(game);
+
+				if(game.checkGameStatus() > 0){
+					checkStatus2(game);
+					break;
+				};
 
 				aiplayer.play(game);
 				count++;
 				numberOfCellsLeft--;
+
+				if(game.checkGameStatus() > 0){
+					checkStatus2(game);
+					break;
+				};
 				
-				checkStatus2(game);
+				;
 				
 			}
 			
@@ -164,7 +180,7 @@ public class tictactoe {
 
 		String aiplayer1Name = "aiplayer1";
 		char aiplayer1sym = 'x';
-
+		
 		String aiplayer2Name = "aiplayer2";
 		char aiplayer2sym = 'y';
 
@@ -192,21 +208,28 @@ public class tictactoe {
 			if (numberOfCellsLeft > 1){
 			
 				if (game.checkGameStatus() != 0 && count > 4){
-					checkStatus(game);
+					checkStatus2(game);
 					break;
 				}
 					
 				aiplayer1.play(game);
 				count++;
 				numberOfCellsLeft--;
-				
-				checkStatus2(game);
+
+				if(game.checkGameStatus() > 0){
+					checkStatus2(game);
+					break;
+				};
 
 				aiplayer2.play(game);
 				count++;
 				numberOfCellsLeft--;
+
+				if(game.checkGameStatus() > 0){
+					checkStatus2(game);
+					break;
+				};
 				
-				checkStatus2(game);
 				
 			}
 			
@@ -222,5 +245,4 @@ public class tictactoe {
 
 
 		
-
 
