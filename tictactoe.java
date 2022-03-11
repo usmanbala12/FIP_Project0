@@ -33,15 +33,18 @@ public class tictactoe {
 	public static void checkStatus(XandOGame game){
 		if(game.checkGameStatus() == 0){
 			System.out.println("the game is a draw ");
+			game.printGameBoard();
 		}
 		else {
 			System.out.println((char)game.checkGameStatus() + " won the game");
+			game.printGameBoard();
 		}
 	}
 
 	public static void checkStatus2(XandOGame game){
 		if (game.checkGameStatus() != 0){
 			System.out.println((char)game.checkGameStatus() + " has won the game");
+			game.printGameBoard();
 		}
 	}
 
@@ -53,60 +56,12 @@ public class tictactoe {
 		char player1sym = 'x';
 
 		String player2name = "player2";
-		char player2sym = 'y';
+		char player2sym = 'o';
 
-		HumanPlayer player1 = new HumanPlayer(player1name, player1sym);
-		HumanPlayer player2 = new HumanPlayer(player2name, player2sym);
+		Player player1 = new HumanPlayer(player1name, player1sym);
+		Player player2 = new HumanPlayer(player2name, player2sym);
 
-		ArrayList<Integer> cellsLeft = game.getAvailableCells();
-		
-		int gameStatus = 0;
-		
-		int numberOfCellsLeft = cellsLeft.size();
-		
-		int count = 0;
-
-		while(0 < numberOfCellsLeft){
-			
-			if(numberOfCellsLeft == 1){
-				player1.play(game); 
-				numberOfCellsLeft--;
-				checkStatus(game);
-				break;
-			}
-			
-			
-			if (numberOfCellsLeft > 1){
-			
-				if (game.checkGameStatus() != 0 && count > 4){
-					checkStatus2(game);
-					break;
-				}
-					
-				player1.play(game);
-				count++;
-				numberOfCellsLeft--;
-
-				if(game.checkGameStatus() > 0){
-					checkStatus2(game);
-					break;
-				};
-
-				player2.play(game);
-				count++;
-				numberOfCellsLeft--;
-
-				if(game.checkGameStatus() > 0){
-					checkStatus2(game);
-					break;
-				};
-				
-				;
-				
-			}
-			
-	
-		}	
+		gameplay(game, player1, player2);	
 
 	}
 
@@ -117,62 +72,16 @@ public class tictactoe {
 		char aiplayersym = 'x';
 
 		String humanPlayerName = "humanplayer";
-		char humanplayersym = 'y';
+		char humanplayersym = 'o';
 
-		AiPlayer aiplayer = new AiPlayer(aiplayerName, aiplayersym);
-		HumanPlayer humanplayer = new HumanPlayer(humanPlayerName, humanplayersym);
-
-		ArrayList<Integer> cellsLeft = game.getAvailableCells();
+		Player aiplayer = new AiPlayer(aiplayerName, aiplayersym);
+		Player humanplayer = new HumanPlayer(humanPlayerName, humanplayersym);
 		
-		int gameStatus = 0;
-		
-		int numberOfCellsLeft = cellsLeft.size();
-		
-		int count = 0;
-
-		while(0 < numberOfCellsLeft){
-			
-			if(numberOfCellsLeft == 1){
-				humanplayer.play(game); 
-				numberOfCellsLeft--;
-				checkStatus(game);
-				break;
-			}
-			
-			
-			if (numberOfCellsLeft > 1){
-			
-				if (game.checkGameStatus() != 0 && count > 4){
-					checkStatus2(game);
-					break;
-				}
-					
-				humanplayer.play(game);
-				count++;
-				numberOfCellsLeft--;
-
-				if(game.checkGameStatus() > 0){
-					checkStatus2(game);
-					break;
-				};
-
-				aiplayer.play(game);
-				count++;
-				numberOfCellsLeft--;
-
-				if(game.checkGameStatus() > 0){
-					checkStatus2(game);
-					break;
-				};
-				
-				;
-				
-			}
-			
-	
-		}	
+		gameplay(game, aiplayer, humanplayer);	
 
 	}
+
+	
 
 	public static void AIsimulation(){
 
@@ -182,10 +91,17 @@ public class tictactoe {
 		char aiplayer1sym = 'x';
 		
 		String aiplayer2Name = "aiplayer2";
-		char aiplayer2sym = 'y';
+		char aiplayer2sym = 'o';
 
-		AiPlayer aiplayer1 = new AiPlayer(aiplayer1Name, aiplayer1sym);
-		AiPlayer aiplayer2 = new AiPlayer(aiplayer2Name, aiplayer2sym);
+		Player aiplayer1 = new AiPlayer(aiplayer1Name, aiplayer1sym);
+		Player aiplayer2 = new AiPlayer(aiplayer2Name, aiplayer2sym);
+
+		gameplay(game, aiplayer1, aiplayer2);
+		
+	}
+
+
+	public static void gameplay(XandOGame game, Player player0, Player player1){
 
 		ArrayList<Integer> cellsLeft = game.getAvailableCells();
 		
@@ -198,7 +114,7 @@ public class tictactoe {
 		while(0 < numberOfCellsLeft){
 			
 			if(numberOfCellsLeft == 1){
-				aiplayer1.play(game); 
+				player0.play(game); 
 				numberOfCellsLeft--;
 				checkStatus(game);
 				break;
@@ -212,7 +128,7 @@ public class tictactoe {
 					break;
 				}
 					
-				aiplayer1.play(game);
+				player0.play(game);
 				count++;
 				numberOfCellsLeft--;
 
@@ -221,7 +137,7 @@ public class tictactoe {
 					break;
 				};
 
-				aiplayer2.play(game);
+				player1.play(game);
 				count++;
 				numberOfCellsLeft--;
 
@@ -235,9 +151,12 @@ public class tictactoe {
 			
 	
 		}
+
 	}
 
 }
+
+
 	
 
 
